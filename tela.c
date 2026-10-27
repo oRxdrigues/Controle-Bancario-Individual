@@ -1,8 +1,9 @@
 /* ----------------------------------------------------------------------+
 |   Autor : Joao Augusto Ferri Camargo                                   |
-|   RA: 437262-2026 - JOAO                                                |
-|   RA: 441378-2026 - JEAN                                                            |
-|   CODIGO PRINCIPAL - SISTEMA DE GERENCIAMENTO DE CONTAS E MOVIMENTACAO |
+|   Data: 26/10/2026                                                     |
+|   RA: 437262-2026 - JOAO                                               |
+|   RA: 441378-2026 - JEAN                                               |
+|   CODIGO PRINCIPAL - SISTEMA DE GERENCIAMENTO DE CONTAS E MOVIMENTACA  |
 |   FUNCAO PRINCIPAL DESTA PAGINA - REALIZAR AS FUNCOES E DEFINIR AS     |
 |   ESTRUTURAS DE DADOS DO SISTEMA                                       |
 +-----------------------------------------------------------------------*/
