@@ -1,7 +1,7 @@
-#include funcoes.h
+#include "funcoes.h"
 
 int main(
 
-  tela();
+  
 
 );

@@ -34,18 +34,25 @@ char status[10]; //ativo ou nativo
 } reg_contas;
 
 typedef struct TipoItem_conta *TipoApontador_conta;
-
 //Lista Duplamente Encadeada
 typedef struct TipoItem_conta
 {
     reg_contas conteudo;
-    TipoApontador_conta *prox;
-    TipoApontador_conta *ant;
+    TipoApontador_conta prox;
+    TipoApontador_conta ant;
 }TipoItem_conta;
+
+// Define a estrutura que controla a lista de contas, inicio, fim e a quantidade de nós
+typedef struct 
+{
+    TipoItem_conta *inicio;
+    TipoItem_conta *fim;
+    TipoApontador_conta qtd;
+}Lista_Conta;
+
 
 
 //Define estrutura dos movimentos
-
 typedef struct 
 {
     int sequencial; //Id da movim
@@ -65,5 +72,25 @@ typedef struct TipoItem_movim
     reg_movimentacao conteudo;
     TipoApontador_movim *prox;
 }TipoItem_movim;
+
+void gotoxy(int x, int y);
+
+void tela();
+
+void telaConta();
+
+void iniciaListaContas(Lista_Conta *L);
+
+TipoItem_conta *obter_Posicao_Conta(Lista_Conta *L, int pos);
+
+TipoItem_conta *busca_Codigo_Conta(Lista_Conta *L, int codigo);
+
+void inserir_Inicio_Conta(Lista_Conta *L, TipoItem_conta *novo);
+
+void inserir_Final_Conta(Lista_Conta *L, TipoItem_conta *novo);
+
+int inserir_Posicao_Conta(Lista_Conta *L, TipoItem_conta *novo, int pos);
+
+
 
 #endif
