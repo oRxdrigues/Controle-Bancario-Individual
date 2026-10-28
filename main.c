@@ -2,6 +2,7 @@
 
 int main(
 
-  
-
+  tela(); 
+ 
+  return 0;
 );

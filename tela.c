@@ -13,7 +13,7 @@
 #include "funcoes.h"
 
 //Funcao na qual define como sera a tela(borda)
-void tela(void)
+void tela()
 {
     int i;
 
@@ -23,10 +23,7 @@ void tela(void)
     printf("|  UNICIVE");
 
     gotoxy(24, 1);
-    printf("SISTEMA GESTAO DE FUNCIONARIOS");
-
-    gotoxy(62, 1);
-    printf("Estrutura de Dados");
+    printf("Controle Bancario");
 
     gotoxy(1, 2);
     printf("|");
