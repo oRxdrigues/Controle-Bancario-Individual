@@ -13,5 +13,15 @@
 | reg_movim - sendo um lista simplesmente encadeada, estrutura das movimentações |
 | Adição do da função gotoxy, tendo como funcionalidade determinar a posição de algo na tela|
 
+---
+
+### ALTERAÇÕES FERRI 27/10/2026 
+
+---
+
+|ADIÇÕES DENTRO DO CODIGO|
+|:---:|
+| Adição das funções de remoção de conta da lista, inicio, fim e por posição|
+| correção de algumas funções, como "tela.c"|
 
 </div>
