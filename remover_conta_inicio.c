@@ -16,7 +16,7 @@ void remover_conta_inicio(Lista_Conta *L){
 
     if(L->inicio == NULL)
     {
-        return 0;
+        return;
     }
 
 

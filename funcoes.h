@@ -48,7 +48,7 @@ typedef struct
 {
     TipoItem_conta *inicio;
     TipoItem_conta *fim;
-    TipoApontador_conta qtd;
+    int qtd;
 }Lista_Conta;
 
 

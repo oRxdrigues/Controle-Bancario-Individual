@@ -1,8 +1,11 @@
 #include "funcoes.h"
 
-int main(
+int main()
+{
+    tela();
+    telaConta();
 
-  tela(); 
- 
-  return 0;
-);
+    getchar();
+
+    return 0;
+}

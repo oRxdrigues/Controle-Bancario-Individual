@@ -13,6 +13,7 @@
 
 void telaConta(void)
 {
+
     gotoxy(07, 05);
     printf("Codigo da conta.......: ");
 
