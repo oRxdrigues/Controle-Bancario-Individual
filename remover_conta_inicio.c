@@ -10,14 +10,29 @@
 
 #include "funcoes.h"
 
-void remover_conta_inicio(Lista_Conta *L){
+void remover_conta_inicio(Lista_Conta *L)
+{
 
   TipoItem_conta *p;
 
-    if(L->inicio == NULL)
-    {
-        return;
-    }
+  // caso nao tenha nenhum no
+  if (L->inicio == NULL)
+  {
+    return 0;
+  }
+  // caso tenha somente um no na lista
+  if (L->incio == L->fim)
+  {
 
-
+    free(L->inicio);
+    L->incio = NULL;
+    L->fim = NULL;
+  }
+  else // caso tenha mais de um no na lista
+  {
+    p = L->incio;
+    L->inicio = p->prox;
+    free(p);
+    L->inicio->ant = NULL;
+  }
 }
