@@ -18,7 +18,7 @@ void remover_conta_final(Lista_Conta *L)
     // Caso nao haja no na lista
     if (L->inicio == NULL)
     {
-        return 0;
+        return;
     }
 
     p = L->fim;

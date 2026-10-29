@@ -80,7 +80,9 @@ void tela();
 
 void telaConta();
 
-void iniciaListaContas(Lista_Conta *L);
+void MenuConta(Lista_Conta *L);
+
+void iniciaContas(Lista_Conta *L);
 
 TipoItem_conta *obter_Posicao_Conta(Lista_Conta *L, int pos);
 
@@ -90,7 +92,17 @@ void inserir_Inicio_Conta(Lista_Conta *L, TipoItem_conta *novo);
 
 void inserir_Final_Conta(Lista_Conta *L, TipoItem_conta *novo);
 
-int inserir_Posicao_Conta(Lista_Conta *L, TipoItem_conta *novo, int pos);
+int inserir_Posicao_Conta(Lista_Conta *L, TipoItem_conta *novo);
+
+void remover_conta_final(Lista_Conta *L);
+
+void remover_conta_inicio(Lista_Conta *L);
+
+void remover_conta_posicao(Lista_Conta *L);
+
+void MenuPrincipal();
+
+TipoItem_conta *cadastrarConta(void);
 
 
 

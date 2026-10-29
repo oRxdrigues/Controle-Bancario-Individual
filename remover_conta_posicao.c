@@ -10,36 +10,54 @@
 
 #include "funcoes.h"
 
-void ramover_conta_posicao(Lista_conta *L)
+void remover_conta_posicao(Lista_Conta *L)
 {
+    TipoItem_conta *p, *p2;
+    int pos;
 
-    TipoItem_conta *p2;
 
-    if (L->inicio == NULL)
+    printf("Digite a posicao da conta que deseja remover: ");
+    scanf("%d", &pos);
+
+    if (L->inicio == NULL || pos < 1 || pos > L->qtd)
     {
-        return 0;
+        return;
     }
+
     // Para caso haja somente um no na lista
-    if (L->incio == L->fim)
+    if (L->inicio == L->fim)
     {
         free(L->inicio);
-        L->incio = NULL;
+        L->inicio = NULL;
         L->fim = NULL;
-    } // remove dentro da posicao
+    }
     else
     {
-        // funcao onde me entrega atraves de um ponteiro (p), a posicao digitada
-        Obter_Posicao_Conta(L, pos - 1);
-        p2 = p->ant;
-        p2->prox = p->prox;
+        // Obtem o no da posicao digitada
+        p = obter_Posicao_Conta(L, pos);
+
+        // Caso seja a ultima posicao da lista
+        if (p == L->fim)
+        {
+            L->fim = p->ant;
+            L->fim->prox = NULL;
+        }
+        // Caso seja a primeira posicao da lista
+        else if (p == L->inicio)
+        {
+            L->inicio = p->prox;
+            L->inicio->ant = NULL;
+        }
+        // Remove dentro da posicao
+        else
+        {
+            p2 = p->ant;
+            p2->prox = p->prox;
+            p->prox->ant = p2;
+        }
+
         free(p);
     }
 
-    // caso seja a ultima posicao da lista
-    if (p == L->fim)
-    {
-        L->fim = p->ant;
-        free(p);
-        L->fim->prox = NULL;
-    }
+    L->qtd--;
 }

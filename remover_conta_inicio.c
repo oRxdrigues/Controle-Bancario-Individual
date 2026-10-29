@@ -18,19 +18,19 @@ void remover_conta_inicio(Lista_Conta *L)
   // caso nao tenha nenhum no
   if (L->inicio == NULL)
   {
-    return 0;
+    return;
   }
   // caso tenha somente um no na lista
-  if (L->incio == L->fim)
+  if (L->inicio == L->fim)
   {
 
     free(L->inicio);
-    L->incio = NULL;
+    L->inicio = NULL;
     L->fim = NULL;
   }
   else // caso tenha mais de um no na lista
   {
-    p = L->incio;
+    p = L->inicio;
     L->inicio = p->prox;
     free(p);
     L->inicio->ant = NULL;

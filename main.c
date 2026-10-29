@@ -3,7 +3,8 @@
 int main()
 {
     tela();
-    telaConta();
+    MenuPrincipal();
+    
 
     getchar();
 
