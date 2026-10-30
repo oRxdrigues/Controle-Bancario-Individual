@@ -104,6 +104,8 @@ void MenuPrincipal();
 
 TipoItem_conta *cadastrarConta(void);
 
+void ConsultarConta(Lista_Conta *L);
+
 
 
 #endif

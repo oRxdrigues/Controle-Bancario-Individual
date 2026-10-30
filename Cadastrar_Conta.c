@@ -60,7 +60,7 @@ TipoItem_conta *cadastrarConta(void)
 
     free(novo);
 
-    gotoxy(5, 23);
+    gotoxy(6, 23);
     printf("Cadastro cancelado!                                  ");
     return NULL;
 }

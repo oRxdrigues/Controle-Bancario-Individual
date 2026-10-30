@@ -15,7 +15,8 @@ int inserir_Posicao_Conta(Lista_Conta *L, TipoItem_conta *novo)
     TipoItem_conta *ant;
     int pos;
 
-    printf("Digite a posicao da conta que deseja inserir: ");
+    gotoxy(06, 23);
+    printf("Digite a posicao da conta que deseja inserir:              ");
     scanf("%d", &pos);
 
     if (pos < 1 || pos > L->qtd + 1)

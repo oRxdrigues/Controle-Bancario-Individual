@@ -47,7 +47,7 @@ void MenuConta(Lista_Conta *L)
                 if (novo != NULL)
                 {
                     inserir_Inicio_Conta(L, novo);
-                    gotoxy(5, 23);
+                    gotoxy(6, 23);
                     printf("Conta cadastrada com sucesso!                            ");
                     getch();
                 }
@@ -55,9 +55,33 @@ void MenuConta(Lista_Conta *L)
                  break;
             }
             case 2:
-                break;
+            {
+                TipoItem_conta *novo = cadastrarConta();
+
+                if (novo != NULL)
+                {
+                    inserir_Posicao_Conta(L, novo);
+                    gotoxy(6, 23);
+                    printf("Conta cadastrada com sucesso!                            ");
+                    getch();
+                }
+
+                 break;
+            }
             case 3:
-                break;
+            {
+                TipoItem_conta *novo = cadastrarConta();
+
+                if (novo != NULL)
+                {
+                    inserir_Final_Conta(L, novo);
+                    gotoxy(6, 23);
+                    printf("Conta cadastrada com sucesso!                            ");
+                    getch();
+                }
+
+                 break;
+            }
             case 4:
                 break;
             case 5:
@@ -65,6 +89,7 @@ void MenuConta(Lista_Conta *L)
             case 6:
                 break;
             case 7:
+                ConsultarConta(L);
                 break;
             case 8:
                 break;
