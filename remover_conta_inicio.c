@@ -16,7 +16,7 @@ void remover_conta_inicio(Lista_Conta *L)
   TipoItem_conta *p;
 
   // caso nao tenha nenhum no
-  if (L->qtd == NULL)
+  if (L->inicio == NULL)
   {
     return;
   }

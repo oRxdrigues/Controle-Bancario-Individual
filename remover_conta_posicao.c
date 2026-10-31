@@ -15,7 +15,14 @@ void remover_conta_posicao(Lista_Conta *L)
     TipoItem_conta *p, *p2;
     int pos;
 
-    consulta_conta(L, conta);
+
+    gotoxy(20,20);
+    printf("digite a posiçao:");
+    scanf("%d", &pos);
+
+    p = obter_Posicao_Conta(L, pos);
+
+   
 
     //Caso nao tenha escrito uma posicao na qual nao exista
     if (pos < 1 || pos > L->qtd)
@@ -37,7 +44,7 @@ void remover_conta_posicao(Lista_Conta *L)
     else
     {
         // Obtem o no da posicao digitada
-        p = obter_Posicao_Conta(L, pos);
+        
 
         // Caso seja a ultima posicao da lista
         if (p == L->fim)
