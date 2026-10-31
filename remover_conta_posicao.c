@@ -17,7 +17,7 @@ void remover_conta_posicao(Lista_Conta *L)
     int resp;
 
     gotoxy(20, 20);
-    printf("digite a posicao:");
+    printf(" Digite a posicao:");
     scanf("%d", &pos);
 
     p = obter_Posicao_Conta(L, pos);
@@ -51,15 +51,31 @@ void remover_conta_posicao(Lista_Conta *L)
         gotoxy(5, 23);
         printf("Lista vazia!");
         getch();
-        return;
+        
+        
     }
 
     // Para caso haja somente um no na lista
     if (L->qtd == 1)
     {
-        free(L->inicio);
         L->inicio = NULL;
         L->fim = NULL;
+
+        gotoxy(10, 17);
+        printf("Deseja remover conta? 1-Sim / 2-Nao: ");
+        scanf("%d", &resp);
+        getch();
+
+        if (resp == 1)
+        {
+            free(p);
+        }
+        else
+        {
+
+            return;
+        }
+    }
     }
     else
     {
