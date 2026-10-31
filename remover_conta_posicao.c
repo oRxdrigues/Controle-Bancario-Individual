@@ -75,7 +75,7 @@ void remover_conta_posicao(Lista_Conta *L)
 
             return;
         }
-    }
+    
     }
     else
     {
