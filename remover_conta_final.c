@@ -16,7 +16,7 @@ void remover_conta_final(Lista_Conta *L)
     TipoItem_conta *p;
 
     // Caso nao haja no na lista
-    if (L->inicio == NULL)
+    if (L->qtd == NULL)
     {
         return;
     }
@@ -24,7 +24,7 @@ void remover_conta_final(Lista_Conta *L)
     p = L->fim;
 
     // caso haja somente um no na lista
-    if (L->inicio == L->fim)
+    if (L->qtd == 1)
     {
         free(L->inicio);
         L->inicio = NULL;

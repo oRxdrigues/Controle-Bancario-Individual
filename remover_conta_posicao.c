@@ -15,17 +15,20 @@ void remover_conta_posicao(Lista_Conta *L)
     TipoItem_conta *p, *p2;
     int pos;
 
+    consulta_conta(L, conta);
 
-    printf("Digite a posicao da conta que deseja remover: ");
-    scanf("%d", &pos);
-
-    if (L->inicio == NULL || pos < 1 || pos > L->qtd)
+    //Caso nao tenha escrito uma posicao na qual nao exista
+    if (pos < 1 || pos > L->qtd)
     {
+
+        gotoxy(5, 23);
+        printf("Lista vazia!");
+        getch();
         return;
     }
 
     // Para caso haja somente um no na lista
-    if (L->inicio == L->fim)
+    if (L->qtd == 1)
     {
         free(L->inicio);
         L->inicio = NULL;
@@ -58,6 +61,7 @@ void remover_conta_posicao(Lista_Conta *L)
 
         free(p);
     }
+
 
     L->qtd--;
 }

@@ -16,12 +16,12 @@ void remover_conta_inicio(Lista_Conta *L)
   TipoItem_conta *p;
 
   // caso nao tenha nenhum no
-  if (L->inicio == NULL)
+  if (L->qtd == NULL)
   {
     return;
   }
   // caso tenha somente um no na lista
-  if (L->inicio == L->fim)
+  if (L->qtd == 1)
   {
 
     free(L->inicio);

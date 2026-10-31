@@ -85,6 +85,11 @@ void MenuConta(Lista_Conta *L)
             case 4:
                 break;
             case 5:
+                remover_conta_posicao(L);
+                gotoxy(5, 23);
+                printf("Conta removida com sucesso!");
+                getch();
+
                 break;
             case 6:
                 break;
