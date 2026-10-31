@@ -14,17 +14,37 @@ void remover_conta_posicao(Lista_Conta *L)
 {
     TipoItem_conta *p, *p2;
     int pos;
+    int resp;
 
-
-    gotoxy(20,20);
+    gotoxy(20, 20);
     printf("digite a posiçao:");
     scanf("%d", &pos);
 
     p = obter_Posicao_Conta(L, pos);
 
-   
+    system("cls");
+    tela();
+    gotoxy(20, 5);
+    printf("Remover Conta");
 
-    //Caso nao tenha escrito uma posicao na qual nao exista
+    gotoxy(10, 7);
+    printf("Codigo: %d", p->conteudo.codigo_conta);
+    gotoxy(10, 8);
+    printf("Banco: %s", p->conteudo.banco);
+    gotoxy(10, 9);
+    printf("Agencia: %s", p->conteudo.agencia);
+    gotoxy(10, 10);
+    printf("Numero da conta: %s", p->conteudo.numero_conta);
+    gotoxy(10, 11);
+    printf("Tipo: %s", p->conteudo.tipo_conta);
+    gotoxy(10, 12);
+    printf("Saldo: %.2f", p->conteudo.vl_saldo);
+    gotoxy(10, 13);
+    printf("Limite: %.2f", p->conteudo.vl_limite);
+    gotoxy(10, 14);
+    printf("Status: %s", p->conteudo.status);
+
+    // Caso nao tenha escrito uma posicao na qual nao exista
     if (pos < 1 || pos > L->qtd)
     {
 
@@ -43,9 +63,6 @@ void remover_conta_posicao(Lista_Conta *L)
     }
     else
     {
-        // Obtem o no da posicao digitada
-        
-
         // Caso seja a ultima posicao da lista
         if (p == L->fim)
         {
@@ -65,10 +82,21 @@ void remover_conta_posicao(Lista_Conta *L)
             p2->prox = p->prox;
             p->prox->ant = p2;
         }
+        gotoxy(10, 17);
+        printf("Deseja remover conta? 1-Sim / 2-Nao: ");
+        scanf("%d", &resp);
+        getch();
 
-        free(p);
+        if (resp == 1)
+        {
+            free(p);
+        }
+        else
+        {
+
+            return;
+        }
     }
-
 
     L->qtd--;
 }

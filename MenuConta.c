@@ -110,7 +110,7 @@ void MenuConta(Lista_Conta *L)
             break;
         case 6:
 
-            remover_conta_fim(L);
+            remover_conta_final(L);
             gotoxy(5, 23);
             printf("Conta removida com sucesso!");
             getch();
