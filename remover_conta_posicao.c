@@ -17,7 +17,7 @@ void remover_conta_posicao(Lista_Conta *L)
     int resp;
 
     gotoxy(20, 20);
-    printf("digite a posiçao:");
+    printf("digite a posicao:");
     scanf("%d", &pos);
 
     p = obter_Posicao_Conta(L, pos);
