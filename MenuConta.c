@@ -93,23 +93,21 @@ void MenuConta(Lista_Conta *L)
             break;
         }
         case 4:
-
             remover_conta_inicio(L);
 
             break;
         case 5:
-
             remover_conta_posicao(L);
 
             break;
         case 6:
-
             remover_conta_final(L);
             break;
         case 7:
             ConsultarConta(L);
             break;
         case 8:
+            alterar_Conta(L);
             break;
         case 0:
             break;

@@ -106,6 +106,8 @@ TipoItem_conta *cadastrarConta(void);
 
 void ConsultarConta(Lista_Conta *L);
 
+void alterar_Conta(Lista_Conta *L)
+
 
 
 #endif
