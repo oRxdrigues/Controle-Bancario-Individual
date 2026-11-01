@@ -1,3 +1,14 @@
+/* ---------------------------------------------------------------------------+
+|   Autor : Jean Rodrigues de Souza                                           |
+|   Data: 01/11/2026                                                          |
+|   RA: 437262-2026 - JOAO                                                    |
+|   RA: 441378-2026 - JEAN                                                    |
+|   CODIGO PRINCIPAL - SISTEMA DE GERENCIAMENTO DE CONTAS E MOVIMENTACAO      |
+|   FUNCAO PRINCIPAL DESTA PAGINA - Altera dados de uma conta                 |
++----------------------------------------------------------------------------*/
+
+
+
 
 #include "funcoes.h"
 

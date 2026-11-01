@@ -46,7 +46,7 @@ void MenuPrincipal(void)
                 break;
 
             case 2:
-                /* Chamar a funcao de movimentacoes */
+                 MenuMovimentacao();
                 break;
 
             case 3:
