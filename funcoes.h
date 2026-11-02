@@ -35,13 +35,12 @@ char status[10]; //ativo ou nativo
 } reg_contas;
 
 typedef struct TipoItem_conta *TipoApontador_conta;
-//Lista Duplamente Encadeada
+
 typedef struct TipoItem_conta
 {
     reg_contas conteudo;
     TipoApontador_conta prox;
-    TipoApontador_conta ant;
-}TipoItem_conta;
+} TipoItem_conta;
 
 // Define a estrutura que controla a lista de contas, inicio, fim e a quantidade de nós
 typedef struct 
