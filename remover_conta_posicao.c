@@ -8,24 +8,31 @@
 |   POSICAO DA LISTA                                                     |
 +-----------------------------------------------------------------------*/
 
+
 #include "funcoes.h"
+
 
 void remover_conta_posicao(Lista_Conta *L)
 {
     TipoItem_conta *p, *p2;
+    TipoItem_conta *ant;
     int pos;
     int resp;
+
 
     gotoxy(20, 20);
     printf("Digite a posicao...:");
     scanf("%d", &pos);
 
+
     p = obter_Posicao_Conta(L, pos);
+
 
     system("cls");
     tela();
     gotoxy(20, 5);
     printf("Remover Conta na Posicao");
+
 
     gotoxy(10, 7);
     printf("Codigo: %d", p->conteudo.codigo_conta);
@@ -44,14 +51,17 @@ void remover_conta_posicao(Lista_Conta *L)
     gotoxy(10, 14);
     printf("Status: %s", p->conteudo.status);
 
+
     // Caso nao tenha escrito uma posicao na qual nao exista
     if (pos < 1 || pos > L->qtd)
     {
+
 
         gotoxy(5, 23);
         printf("Lista vazia!");
         getch();
     }
+
 
     // Para caso haja somente um no na lista
     if (L->qtd == 1)
@@ -59,10 +69,12 @@ void remover_conta_posicao(Lista_Conta *L)
         L->inicio = NULL;
         L->fim = NULL;
 
+
         gotoxy(10, 17);
         printf("Deseja remover conta? 1-Sim / 2-Nao: ");
         scanf("%d", &resp);
         getch();
+
 
         if (resp == 1)
         {
@@ -70,6 +82,7 @@ void remover_conta_posicao(Lista_Conta *L)
         }
         else
         {
+
 
             return;
         }
@@ -77,32 +90,42 @@ void remover_conta_posicao(Lista_Conta *L)
     else
     {
         // Caso seja a ultima posicao da lista
-        if (p == L->fim)
+        if (p == L->fim && p != L->inicio)
         {
-            L->fim = p->ant;
-            L->fim->prox = NULL;
+            ant = L->inicio;
+             while (ant->prox != L->fim)
+            {
+                ant = ant->prox;
+            }
+            L->fim = ant;
+            ant->prox = NULL;
         }
         // Caso seja a primeira posicao da lista
-        else if (p == L->inicio)
+        else if (p == L->inicio && p != L->fim)
         {
+            p = L->inicio;
             L->inicio = p->prox;
-            L->inicio->ant = NULL;
         }
         // Remove dentro da posicao
         else
         {
-            p2 = p->ant;
-            p2->prox = p->prox;
-            p->prox->ant = p2;
+            ant = L->inicio; 
+            while (ant->prox != p)
+            {
+                ant = ant->prox;
+            }
+            ant->prox = p->prox;
         }
         gotoxy(10, 17);
         printf("Deseja remover conta? 1-Sim / 2-Nao: ");
         scanf("%d", &resp);
         getch();
 
+
         if (resp == 1)
         {
             free(p);
+            L->qtd--;
             gotoxy(5, 23);
             printf("Conta removida!");
             getch();
@@ -122,6 +145,7 @@ void remover_conta_posicao(Lista_Conta *L)
             return;
         }
     }
+
 
     L->qtd--;
 }

@@ -8,21 +8,37 @@
 |   DA LISTA                                                             |
 +-----------------------------------------------------------------------*/
 
+
 #include "funcoes.h"
+
 
 void remover_conta_final(Lista_Conta *L)
 {
     int final;
     int resp;
+    TipoItem_conta *ant;
+
 
     TipoItem_conta *p;
 
-    p = L->fim;
+
+
+
+    // Caso nao haja no na lista
+    if (L->inicio == NULL && L->fim == NULL)
+    {
+        gotoxy(5, 23);
+        printf("Lista vazia!");
+        getch();
+        return;
+    }
+
 
     system("cls");
     tela();
     gotoxy(20, 5);
     printf("Remover Conta Fim");
+
 
     gotoxy(10, 7);
     printf("Codigo: %d", p->conteudo.codigo_conta);
@@ -41,8 +57,9 @@ void remover_conta_final(Lista_Conta *L)
     gotoxy(10, 14);
     printf("Status: %s", p->conteudo.status);
 
+
     // Caso nao haja no na lista
-    if (L->inicio == NULL)
+    if (L->inicio == NULL && L->fim == NULL)
     {
         gotoxy(5, 23);
         printf("Lista vazia!");
@@ -57,17 +74,26 @@ void remover_conta_final(Lista_Conta *L)
     }
     else
     { // caso haja mais de um no na lista
-        L->fim = p->ant;
-        L->fim->prox = NULL;
+        ant = L->inicio;
+        while( ant->prox != L->fim){
+            ant = ant->prox;
+        }
+        p = L->fim;
+        L->fim = ant;
+        ant->prox = NULL;
+
+
     }
     gotoxy(10, 17);
     printf("Deseja remover conta? 1-Sim / 2-Nao: ");
     scanf("%d", &resp);
     getch();
 
+
     if (resp == 1)
     {
         free(p);
+        L->qtd--;
         gotoxy(5, 23);
         printf("Conta removida!");
         getch();
@@ -87,3 +113,5 @@ void remover_conta_final(Lista_Conta *L)
         return;
     }
 }
+
+
