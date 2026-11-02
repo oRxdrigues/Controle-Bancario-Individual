@@ -28,7 +28,7 @@ void remover_conta_final(Lista_Conta *L)
     if (L->inicio == NULL && L->fim == NULL)
     {
         gotoxy(5, 23);
-        printf("Lista vazia!");
+        printf(" Lista vazia!");
         getch();
         return;
     }
@@ -58,14 +58,7 @@ void remover_conta_final(Lista_Conta *L)
     printf("Status: %s", p->conteudo.status);
 
 
-    // Caso nao haja no na lista
-    if (L->inicio == NULL && L->fim == NULL)
-    {
-        gotoxy(5, 23);
-        printf("Lista vazia!");
-        getch();
-        return;
-    }
+   
     // caso haja somente um no na lista
     if (L->qtd == 1)
     {

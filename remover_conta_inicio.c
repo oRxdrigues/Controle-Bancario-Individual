@@ -21,6 +21,14 @@ void remover_conta_inicio(Lista_Conta *L)
   TipoItem_conta *p;
 
 
+  if (L->inicio == NULL && L->fim == NULL)
+  {
+    gotoxy(5, 23);
+    printf(" Lista vazia!");
+    getch();
+    return;
+  }
+
   p = L->inicio;
 
 
@@ -51,12 +59,8 @@ void remover_conta_inicio(Lista_Conta *L)
   // caso nao tenha nenhum no
 
 
-  if (L->inicio == NULL && L->fim == NULL)
-  {
-    return;
-  }
   // caso tenha somente um no na lista
-  else if (L->qtd == 1)
+  if (L->qtd == 1)
   {
     L->inicio = NULL;
     L->fim = NULL;
@@ -79,20 +83,20 @@ void remover_conta_inicio(Lista_Conta *L)
     free(p);
     L->qtd--;
     gotoxy(5, 23);
-    printf("Conta removida!");
+    printf(" Conta removida!");
     getch();
   }
   else if (resp == 2)
   {
     gotoxy(5,23);
-    printf("Retornando ao inicio!");
+    printf(" Retornando ao inicio!");
     getch();
     return;
   }
   else
   {
     gotoxy(5,23);
-    printf("Resposta invalida!");
+    printf(" esposta invalida!");
     getch();
     return;
   }
