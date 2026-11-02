@@ -66,12 +66,19 @@ typedef struct
 
 typedef struct TipoItem_movim *TipoApontador_movim;
 
-//Lista simplesmente encadeada
 typedef struct TipoItem_movim
 {
     reg_movimentacao conteudo;
-    TipoApontador_movim *prox;
-}TipoItem_movim;
+    TipoApontador_movim prox;
+    TipoApontador_movim ant;
+} TipoItem_movim;
+
+typedef struct
+{
+    TipoItem_movim *inicio;
+    TipoItem_movim *fim;
+    int qtd;
+} Lista_Movim;
 
 void gotoxy(int x, int y);
 
@@ -107,7 +114,13 @@ void ConsultarConta(Lista_Conta *L);
 
 void alterar_Conta(Lista_Conta *L);
 
-void Menu_Movimentacao(void);
+void Menu_Movimentacao(Lista_Movim *LM, Lista_Conta *L);
+
+void tela_Movimentacao(void);
+
+void Inicia_lista_movi(Lista_Movim *L);
+
+TipoItem_movim *cadastrar_movimentacao(Lista_Movim *L, Lista_Conta *L2);
 
 
 

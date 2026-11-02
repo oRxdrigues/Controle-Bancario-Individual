@@ -14,6 +14,7 @@ void MenuPrincipal(void)
 {
     int opcao;
     Lista_Conta L;
+    Lista_Movim LM;
 
     iniciaContas(&L);
 
@@ -46,7 +47,7 @@ void MenuPrincipal(void)
                 break;
 
             case 2:
-                Menu_Movimentacao();
+                Menu_Movimentacao(&LM, &L);
                 break;
 
             case 3:

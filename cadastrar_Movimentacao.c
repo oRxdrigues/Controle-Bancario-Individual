@@ -10,27 +10,28 @@
 
 #include "funcoes.h"
 
-TipoItem_movim cadastrar_movimentacao(Lista_Movim *L, Lista_Conta *L2)
+TipoItem_movim *cadastrar_movimentacao(Lista_Movim *LM, Lista_Conta *L)
 {
 
-    TipoItem_movim *novo int pos;
+    TipoItem_movim *novo; int pos;
+    TipoItem_conta *p;
     int gravar;
 
     novo = malloc(sizeof(TipoItem_movim));
 
     gotoxy(04, 07);
     printf("Codigo_conta..........: ");
-    gotoxy(28, 07)
-        scanf("%d", &pos);
+    gotoxy(28, 07);
+    scanf("%d", &pos);
 
-    p = Obter_Posicao_Conta(L, pos)
+    p = obter_Posicao_Conta(L, pos);
 
     system("cls");
     tela();
     tela_Movimentacao();
 
     gotoxy(31, 5);
-    printf("%d", novo->qtd + 1);
+    printf("%d", LM->qtd + 1);
 
     gotoxy(31, 7);
     printf("%d", p->conteudo.codigo_conta);
@@ -61,7 +62,7 @@ TipoItem_movim cadastrar_movimentacao(Lista_Movim *L, Lista_Conta *L2)
     if (novo == NULL)
     {
         novo->prox = NULL;
-        return;
+        return NULL;
     }
 
     if (gravar == 1)
@@ -80,7 +81,7 @@ TipoItem_movim cadastrar_movimentacao(Lista_Movim *L, Lista_Conta *L2)
                 printf("Valor de movimentacao maior do que saldo!");
                 free(novo);
                 getch();
-                return;
+                return NULL;
             }
         }
         else if (strcmp(novo->conteudo.tp_mov, "Credito") == 0)
@@ -93,10 +94,10 @@ TipoItem_movim cadastrar_movimentacao(Lista_Movim *L, Lista_Conta *L2)
             }
             else
             {
-                Printf("Valor de movimentacao maior do que limite da conta!");
+                printf("Valor de movimentacao maior do que limite da conta!");
                 free(novo);
                 getch();
-                return;
+                return NULL;
             }
         }
         else
@@ -104,21 +105,21 @@ TipoItem_movim cadastrar_movimentacao(Lista_Movim *L, Lista_Conta *L2)
             printf("Tipo de movimentacao nao existente!");
             free(novo);
             getch();
-            return;
+            return NULL;
         }
     }
     else if (gravar == 2)
     {
-        print("Movimentacao cancelada!");
+        printf("Movimentacao cancelada!");
         getch();
         free(novo);
-        return;
+        return NULL;
     }
     else
     {
         printf("Opcao invalida!");
         getch();
         free(novo);
-        return;
+        return NULL;
     }
 }

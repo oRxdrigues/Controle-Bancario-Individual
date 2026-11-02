@@ -11,7 +11,7 @@
 
 #include "funcoes.h"
 
-void Menu_Movimentacao(void)
+void Menu_Movimentacao(Lista_Movim *LM, Lista_Conta *L)
 {
     int opcao;
 
@@ -42,7 +42,7 @@ void Menu_Movimentacao(void)
         switch (opcao)
         {
             case 1:
-
+                 cadastrar_movimentacao(LM, L);
                 break;
 
             case 2:
