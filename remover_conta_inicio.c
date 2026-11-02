@@ -8,18 +8,14 @@
 |   DA LISTA                                                             |
 +-----------------------------------------------------------------------*/
 
-
 #include "funcoes.h"
-
 
 void remover_conta_inicio(Lista_Conta *L)
 {
   int ini;
   int resp;
 
-
   TipoItem_conta *p;
-
 
   if (L->inicio == NULL && L->fim == NULL)
   {
@@ -31,12 +27,10 @@ void remover_conta_inicio(Lista_Conta *L)
 
   p = L->inicio;
 
-
   system("cls");
   tela();
   gotoxy(20, 5);
   printf("Remover Conta Inicio");
-
 
   gotoxy(10, 7);
   printf("Codigo: %d", p->conteudo.codigo_conta);
@@ -55,28 +49,23 @@ void remover_conta_inicio(Lista_Conta *L)
   gotoxy(10, 14);
   printf("Status: %s", p->conteudo.status);
 
-
   // caso nao tenha nenhum no
-
 
   // caso tenha somente um no na lista
   if (L->qtd == 1)
   {
     L->inicio = NULL;
     L->fim = NULL;
-   
   }
   else // caso tenha mais de um no na lista
   {
     p = L->inicio;
     L->inicio = p->prox;
-   
   }
   gotoxy(10, 17);
   printf("Deseja remover conta? 1-Sim / 2-Nao: ");
   scanf("%d", &resp);
   getch();
-
 
   if (resp == 1)
   {
@@ -88,18 +77,16 @@ void remover_conta_inicio(Lista_Conta *L)
   }
   else if (resp == 2)
   {
-    gotoxy(5,23);
+    gotoxy(5, 23);
     printf(" Retornando ao inicio!");
     getch();
     return;
   }
   else
   {
-    gotoxy(5,23);
+    gotoxy(5, 23);
     printf(" esposta invalida!");
     getch();
     return;
   }
 }
-
-
