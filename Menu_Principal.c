@@ -46,7 +46,7 @@ void MenuPrincipal(void)
                 break;
 
             case 2:
-                 MenuMovimentacao();
+                Menu_Movimentacao();
                 break;
 
             case 3:
