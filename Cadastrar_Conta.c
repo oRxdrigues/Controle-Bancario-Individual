@@ -1,3 +1,4 @@
+
 /* ---------------------------------------------------------------------------+
 |   Autor : Jean Rodrigues de Souza                                           |
 |   Data: 29/10/2026                                                          |
@@ -7,26 +8,29 @@
 |   FUNCAO PRINCIPAL DESTA PAGINA - Cadastra uma conta na lista               |
 +----------------------------------------------------------------------------*/
 
-
 #include "funcoes.h"
 
+// Cadastra uma nova conta e retorna o elemento criado.
 TipoItem_conta *cadastrarConta(void)
 {
     TipoItem_conta *novo;
     int gravar;
 
+    // Aloca memoria para a nova conta.
     novo = malloc(sizeof(TipoItem_conta));
 
     if (novo == NULL)
         return NULL;
 
+    // Inicializa o ponteiro da lista simplesmente encadeada.
     novo->prox = NULL;
-    novo->ant = NULL;
 
+    // Exibe a tela de cadastro.
     system("cls");
     tela();
     telaConta();
 
+    // Le os dados da conta.
     gotoxy(31, 5);
     scanf("%d", &novo->conteudo.codigo_conta);
 
@@ -51,6 +55,7 @@ TipoItem_conta *cadastrarConta(void)
     gotoxy(31, 19);
     scanf(" %9[^\n]", novo->conteudo.status);
 
+    // Confirma se o usuario deseja gravar a conta.
     gotoxy(5, 23);
     printf("Deseja gravar a conta? 1-Sim / 2-Nao: ");
     scanf("%d", &gravar);
@@ -58,9 +63,11 @@ TipoItem_conta *cadastrarConta(void)
     if (gravar == 1)
         return novo;
 
+    // Libera a memoria se o cadastro for cancelado.
     free(novo);
 
     gotoxy(6, 23);
     printf("Cadastro cancelado!                                  ");
+
     return NULL;
 }

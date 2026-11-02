@@ -40,7 +40,6 @@ typedef struct TipoItem_conta
 {
     reg_contas conteudo;
     TipoApontador_conta prox;
-    TipoApontador_conta ant;
 }TipoItem_conta;
 
 // Define a estrutura que controla a lista de contas, inicio, fim e a quantidade de nós
