@@ -122,6 +122,11 @@ void Inicia_lista_movi(Lista_Movim *L);
 
 TipoItem_movim *cadastrar_movimentacao(Lista_Movim *L, Lista_Conta *L2);
 
+void Transferencia_Contas(Lista_Conta *L);
+
+void Consulta_Movi(Lista_Movim *LM, Lista_Conta *L);
+
+
 
 
 #endif

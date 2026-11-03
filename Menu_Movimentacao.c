@@ -30,7 +30,7 @@ void Menu_Movimentacao(Lista_Movim *LM, Lista_Conta *L)
         printf("2 - Consultar movimentacoes");
 
         gotoxy(20, 12);
-        printf("3 - Consultar por conta");
+        printf("3 - Transferencia entre Contas");
 
         gotoxy(20, 15);
         printf("0 - Voltar ao menu principal");
@@ -46,11 +46,11 @@ void Menu_Movimentacao(Lista_Movim *LM, Lista_Conta *L)
                 break;
 
             case 2:
-
+                Consulta_Movi(LM, L);
                 break;
 
             case 3:
-
+                Transferencia_Contas(L);
                 break;
 
             case 0:

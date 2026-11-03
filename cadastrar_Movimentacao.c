@@ -133,9 +133,11 @@ TipoItem_movim *cadastrar_movimentacao(Lista_Movim *LM, Lista_Conta *L)
     else
     {
         LM->fim->prox = novo;
-        LM->fim = novo;
-        LM->qtd++;
+        
     }
+    LM->fim = novo;
+    LM->qtd++;
+
     gotoxy(7, 23);
     printf("Movimentacao realizada!                              ");
     getch();
