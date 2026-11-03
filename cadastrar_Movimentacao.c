@@ -12,114 +12,132 @@
 
 TipoItem_movim *cadastrar_movimentacao(Lista_Movim *LM, Lista_Conta *L)
 {
-
-    TipoItem_movim *novo; int pos;
+    TipoItem_movim *novo;
     TipoItem_conta *p;
+    int codigo;
     int gravar;
-
-    novo = malloc(sizeof(TipoItem_movim));
-
-    gotoxy(04, 07);
-    printf("Codigo_conta..........: ");
-    gotoxy(28, 07);
-    scanf("%d", &pos);
-
-    p = obter_Posicao_Conta(L, pos);
 
     system("cls");
     tela();
     tela_Movimentacao();
 
-    gotoxy(31, 5);
-    printf("%d", LM->qtd + 1);
-
+    // Onde a pessoa digita o numero da conta para puxar algumas informações
     gotoxy(31, 7);
-    printf("%d", p->conteudo.codigo_conta);
+    scanf("%d", &codigo);
+
+    p = busca_Codigo_Conta(L, codigo);
+    if (p == NULL)
+    {
+        gotoxy(7, 23);
+        printf("Conta nao encontrada! Pressione uma tecla...");
+        getch();
+        return NULL;
+    }
+
+    novo = malloc(sizeof(TipoItem_movim));
+    if (novo == NULL)
+    {
+        gotoxy(7, 23);
+        printf("Transacao nao realizada!");
+        getch();
+        return NULL;
+    }
+    novo->prox = NULL;
+    novo->ant = NULL;
+
+    // aumenta quantidade, para mostrar o numero da transacao
+    novo->conteudo.sequencial = LM->qtd + 1;
+    novo->conteudo.codigo_conta = p->conteudo.codigo_conta;
+
+    gotoxy(31, 5);
+    printf("%d", novo->conteudo.sequencial);
 
     gotoxy(31, 9);
-    scanf(" %9[^\n]", novo->conteudo.data_mov);
+    scanf(" %10[^\n]", novo->conteudo.data_mov);
 
     gotoxy(31, 11);
-    scanf("%d", novo->conteudo.tp_mov);
+    scanf(" %14[^\n]", novo->conteudo.tp_mov);
 
     gotoxy(31, 13);
-    scanf(" %19[^\n]", novo->conteudo.ds_favorecido);
+    scanf(" %49[^\n]", novo->conteudo.ds_favorecido);
 
     gotoxy(31, 15);
     scanf("%lf", &novo->conteudo.vl_movimento);
 
-    gotoxy(31, 15);
-    printf("%lf", p->conteudo.vl_saldo);
+    gotoxy(31, 17);
+    printf("%.2f (limite: %.2f)", p->conteudo.vl_saldo, p->conteudo.vl_limite);
 
-    gotoxy(31, 15);
-    printf("%lf", p->conteudo.vl_limite);
-
-    gotoxy(5, 23);
+    gotoxy(7, 23);
     printf("Deseja realizar a transferencia? 1-Sim / 2-Nao: ");
-    gotoxy(53, 23);
     scanf("%d", &gravar);
 
-    if (novo == NULL)
+    if (gravar == 2)
     {
-        novo->prox = NULL;
+        free(novo);
+        gotoxy(7, 23);
+        printf("Movimentacao cancelada!                              ");
+        getch();
         return NULL;
     }
 
-    if (gravar == 1)
+    if (gravar != 1)
     {
+        free(novo);
+        gotoxy(7, 23);
+        printf("Opcao invalida!                                      ");
+        getch();
+        return NULL;
+    }
 
-        if (strcmp(novo->conteudo.tp_mov, "Debito") == 0)
+    /* validacoes */
+    if (strcmp(novo->conteudo.tp_mov, "Debito") == 0)
+    {
+        if (p->conteudo.vl_saldo - novo->conteudo.vl_movimento < 0)
         {
-            if (p->conteudo.vl_saldo - novo->conteudo.vl_movimento >= 0)
-            {
-                printf("Movimentacao realizada!");
-                getch();
-                return novo;
-            }
-            else
-            {
-                printf("Valor de movimentacao maior do que saldo!");
-                free(novo);
-                getch();
-                return NULL;
-            }
-        }
-        else if (strcmp(novo->conteudo.tp_mov, "Credito") == 0)
-        {
-            if (p->conteudo.vl_saldo + p->conteudo.vl_limite >= novo->conteudo.vl_movimento)
-            {
-                printf("Movimentacao realizada!");
-                getch();
-                return novo;
-            }
-            else
-            {
-                printf("Valor de movimentacao maior do que limite da conta!");
-                free(novo);
-                getch();
-                return NULL;
-            }
-        }
-        else
-        {
-            printf("Tipo de movimentacao nao existente!");
             free(novo);
+            gotoxy(7, 23);
+            printf("Valor de movimentacao maior do que saldo!            ");
             getch();
             return NULL;
         }
     }
-    else if (gravar == 2)
+    else if (strcmp(novo->conteudo.tp_mov, "Credito") == 0)
     {
-        printf("Movimentacao cancelada!");
-        getch();
-        free(novo);
-        return NULL;
+        if (p->conteudo.vl_saldo + p->conteudo.vl_limite < novo->conteudo.vl_movimento)
+        {
+            free(novo);
+            gotoxy(7, 23);
+            printf("Valor de movimentacao maior do que limite da conta!  ");
+            getch();
+            return NULL;
+        }
     }
     else
     {
-        printf("Opcao invalida!");
-        getch();
         free(novo);
+        gotoxy(7, 23);
+        printf("Tipo de movimentacao nao existente!                  ");
+        getch();
         return NULL;
     }
+
+    p->conteudo.vl_saldo -= novo->conteudo.vl_movimento;
+
+    novo->conteudo.vl_saldo = p->conteudo.vl_saldo;
+
+    novo->ant = LM->fim;
+    if (LM->inicio == NULL)
+    {
+        LM->inicio = novo;
+    }
+    else
+    {
+        LM->fim->prox = novo;
+        LM->fim = novo;
+        LM->qtd++;
+    }
+    gotoxy(7, 23);
+    printf("Movimentacao realizada!                              ");
+    getch();
+    return novo;
 }

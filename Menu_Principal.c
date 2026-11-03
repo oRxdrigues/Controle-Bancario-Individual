@@ -7,7 +7,6 @@
 |   FUNCAO PRINCIPAL DESTA PAGINA - Insere o menu principal do sistema        |
 +----------------------------------------------------------------------------*/
 
-
 #include "funcoes.h"
 
 void MenuPrincipal(void)
@@ -17,6 +16,7 @@ void MenuPrincipal(void)
     Lista_Movim LM;
 
     iniciaContas(&L);
+    Inicia_lista_movi(&LM);
 
     do
     {
@@ -42,26 +42,26 @@ void MenuPrincipal(void)
 
         switch (opcao)
         {
-            case 1:
-                MenuConta(&L);
-                break;
+        case 1:
+            MenuConta(&L);
+            break;
 
-            case 2:
-                Menu_Movimentacao(&LM, &L);
-                break;
+        case 2:
+            Menu_Movimentacao(&LM, &L);
+            break;
 
-            case 3:
-                /* Chamar a funcao de salvar */
-                break;
+        case 3:
+            /* Chamar a funcao de salvar */
+            break;
 
-            case 0:
-                break;
+        case 0:
+            break;
 
-            default:
-                gotoxy(27, 19);
-                printf("Opcao invalida!");
-                getch();
-                break;
+        default:
+            gotoxy(27, 19);
+            printf("Opcao invalida!");
+            getch();
+            break;
         }
 
     } while (opcao != 0);
