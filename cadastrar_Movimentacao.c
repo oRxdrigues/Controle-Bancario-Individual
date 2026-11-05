@@ -56,7 +56,7 @@ TipoItem_movim *cadastrar_movimentacao(Lista_Movim *LM, Lista_Conta *L)
     scanf(" %10[^\n]", novo->conteudo.data_mov);
 
     gotoxy(31, 11);
-    scanf(" %14[^\n]", novo->conteudo.tp_mov);
+    scanf("%d", novo->conteudo.tp_mov);
 
     gotoxy(31, 13);
     scanf(" %49[^\n]", novo->conteudo.ds_favorecido);
@@ -65,7 +65,7 @@ TipoItem_movim *cadastrar_movimentacao(Lista_Movim *LM, Lista_Conta *L)
     scanf("%lf", &novo->conteudo.vl_movimento);
 
     gotoxy(31, 17);
-    printf("%.2f (limite: %.2f)", p->conteudo.vl_saldo, p->conteudo.vl_limite);
+    printf("%.2f", p->conteudo.vl_saldo, );
 
     gotoxy(7, 23);
     printf("Deseja realizar a transferencia? 1-Sim / 2-Nao: ");
@@ -90,27 +90,13 @@ TipoItem_movim *cadastrar_movimentacao(Lista_Movim *LM, Lista_Conta *L)
     }
 
     /* validacoes */
-    if (strcmp(novo->conteudo.tp_mov, "Debito") == 0)
+    if (novo->conteudo.tp_mov == 1)
     {
-        if (p->conteudo.vl_saldo - novo->conteudo.vl_movimento < 0)
-        {
-            free(novo);
-            gotoxy(7, 23);
-            printf("Valor de movimentacao maior do que saldo!            ");
-            getch();
-            return NULL;
-        }
+        p->conteudo.vl_saldo -= novo->conteudo.vl_movimento;
     }
-    else if (strcmp(novo->conteudo.tp_mov, "Credito") == 0)
+    else if (novo->conteudo.tp_mov == 2)
     {
-        if (p->conteudo.vl_saldo + p->conteudo.vl_limite < novo->conteudo.vl_movimento)
-        {
-            free(novo);
-            gotoxy(7, 23);
-            printf("Valor de movimentacao maior do que limite da conta!  ");
-            getch();
-            return NULL;
-        }
+        p->conteudo.vl_saldo += novo->conteudo.vl_movimento;
     }
     else
     {
@@ -121,11 +107,7 @@ TipoItem_movim *cadastrar_movimentacao(Lista_Movim *LM, Lista_Conta *L)
         return NULL;
     }
 
-    p->conteudo.vl_saldo -= novo->conteudo.vl_movimento;
 
-    novo->conteudo.vl_saldo = p->conteudo.vl_saldo;
-
-    novo->ant = LM->fim;
     if (LM->inicio == NULL)
     {
         LM->inicio = novo;

@@ -29,11 +29,11 @@ void tela_Movimentacao(void)
 
 
     gotoxy(04, 11);
-    printf("Tipo de movimentacao..: ");
+    printf("Tipo de movimentacao(1 - Debito \ 2 - credito): ");
 
 
     gotoxy(04, 13);
-    printf("Quem recebera.........: ");
+    printf("Favorecido.............: ");
 
 
     gotoxy(04, 15);
