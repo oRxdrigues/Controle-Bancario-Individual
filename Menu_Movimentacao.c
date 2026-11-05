@@ -1,13 +1,11 @@
-/* ---------------------------------------------------------------------------+
-|   Autor : Jean Rodrigues de Souza                                           |
-|   Data: 01/11/2026                                                          |
-|   RA: 437262-2026 - JOAO                                                    |
-|   RA: 441378-2026 - JEAN                                                    |
-|   CODIGO PRINCIPAL - SISTEMA DE GERENCIAMENTO DE CONTAS E MOVIMENTACAO      |
-|   FUNCAO PRINCIPAL DESTA PAGINA - Insere o menu de movimentaçoes            |
-+----------------------------------------------------------------------------*/
-
-
+/* ----------------------------------------------------------------------+
+| Autor: Jean Rodrigues de Souza                                         |
+| Data atualizada: 05/11/2026                                            |
+| RA 437262-2026 - JOAO                                                  |
+| RA 441378-2026 - JEAN                                                  |
+| CODIGO PRINCIPAL - SISTEMA DE GERENCIAMENTO DE CONTAS E MOVIMENTACAO    |
+| Funcao: Exibe o menu de movimentacao financeira                        |
++------------------------------------------------------------------------*/
 
 #include "funcoes.h"
 
@@ -20,47 +18,45 @@ void Menu_Movimentacao(Lista_Movim *LM, Lista_Conta *L)
         system("cls");
         tela();
 
-        gotoxy(25, 5);
-        printf("MENU DE MOVIMENTACOES");
+        gotoxy(25, 4);
+        printf("MOVIMENTACAO FINANCEIRA");
 
-        gotoxy(20, 8);
-        printf("1 - Registrar movimentacao");
+        gotoxy(10, 7);
+        printf("1 - Registrar Entrada (Credito)");
 
-        gotoxy(20, 10);
-        printf("2 - Consultar movimentacoes");
+        gotoxy(10, 9);
+        printf("2 - Registrar Saida (Debito)");
 
-        gotoxy(20, 12);
-        printf("3 - Transferencia entre Contas");
+        gotoxy(10, 11);
+        printf("3 - Consultar Movimentacao");
 
-        gotoxy(20, 15);
-        printf("0 - Voltar ao menu principal");
+        gotoxy(10, 13);
+        printf("0 - Voltar");
 
-        gotoxy(20, 19);
+        gotoxy(10, 15);
         printf("Escolha uma opcao: ");
         scanf("%d", &opcao);
 
         switch (opcao)
         {
             case 1:
-                 cadastrar_movimentacao(LM, L);
+                cadastrar_movimentacao(LM, L, "Credito");
                 break;
 
             case 2:
-                Consulta_Movi(LM, L);
+                cadastrar_movimentacao(LM, L, "Debito");
                 break;
 
             case 3:
-                Transferencia_Contas(L);
+                Consulta_Movi(LM, L);
                 break;
 
             case 0:
                 break;
 
             default:
-                gotoxy(20, 21);
-                printf("Opcao invalida!");
+                printf("\nOpcao invalida!");
                 getch();
-                break;
         }
 
     } while (opcao != 0);

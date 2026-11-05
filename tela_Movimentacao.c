@@ -33,7 +33,7 @@ void tela_Movimentacao(void)
 
 
     gotoxy(04, 13);
-    printf("Quem recebera.........: ");
+    printf("Favorecido............: ");
 
 
     gotoxy(04, 15);

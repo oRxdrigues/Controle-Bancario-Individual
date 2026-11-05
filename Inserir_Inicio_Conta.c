@@ -10,7 +10,7 @@
 
 #include "funcoes.h"
 
-// Insere uma conta no inicio da lista simplesmente encadeada.
+// Insere uma conta no inicio da lista duplamente encadeada.
 void inserir_Inicio_Conta(Lista_Conta *L, TipoItem_conta *novo)
 {
     // Verifica se a lista ou o novo elemento sao invalidos.
@@ -18,14 +18,22 @@ void inserir_Inicio_Conta(Lista_Conta *L, TipoItem_conta *novo)
         return;
 
     // Liga o novo elemento ao inicio atual da lista.
+    novo->ant = NULL;
     novo->prox = L->inicio;
-    L->inicio = novo;
 
-    // Se a lista estava vazia, o novo elemento tambem sera o ultimo.
-    if (L->fim == NULL)
+    // Se a lista estiver vazia, o novo elemento sera o primeiro e o ultimo.
+    if (L->inicio == NULL)
+    {
+        L->inicio = novo;
         L->fim = novo;
+    }
+    else
+    {
+        // Liga o antigo primeiro elemento ao novo elemento.
+        L->inicio->ant = novo;
+        L->inicio = novo;
+    }
 
     // Atualiza a quantidade de elementos.
     L->qtd++;
 }
-

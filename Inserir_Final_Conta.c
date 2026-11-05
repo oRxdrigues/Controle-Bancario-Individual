@@ -10,7 +10,7 @@
 
 #include "funcoes.h"
 
-// Insere uma conta no final da lista simplesmente encadeada.
+// Insere uma conta no final da lista duplamente encadeada.
 void inserir_Final_Conta(Lista_Conta *L, TipoItem_conta *novo)
 {
     // Verifica se a lista ou o novo elemento sao invalidos.
@@ -19,6 +19,7 @@ void inserir_Final_Conta(Lista_Conta *L, TipoItem_conta *novo)
 
     // O novo elemento sera o ultimo da lista.
     novo->prox = NULL;
+    novo->ant = L->fim;
 
     // Verifica se a lista esta vazia.
     if (L->inicio == NULL)

@@ -1,7 +1,7 @@
 
 /* ---------------------------------------------------------------------------+
 |   Autor : Jean Rodrigues de Souza                                           |
-|   Data: 27/10/2026                                                          |
+|   Data: 01/11/2026                                                          |
 |   RA: 437262-2026 - JOAO                                                    |
 |   RA: 441378-2026 - JEAN                                                    |
 |   CODIGO PRINCIPAL - SISTEMA DE GERENCIAMENTO DE CONTAS E MOVIMENTACAO      |
@@ -10,10 +10,11 @@
 
 #include "funcoes.h"
 
-// Insere uma conta na posicao informada da lista simplesmente encadeada.
+// Insere uma conta na posicao informada da lista duplamente encadeada.
 int inserir_Posicao_Conta(Lista_Conta *L, TipoItem_conta *novo)
 {
     TipoItem_conta *anterior;
+    TipoItem_conta *proximo;
     int pos;
 
     // Verifica se a lista ou o novo elemento sao invalidos.
@@ -47,9 +48,14 @@ int inserir_Posicao_Conta(Lista_Conta *L, TipoItem_conta *novo)
         if (anterior == NULL)
             return 0;
 
-        // Liga o novo elemento ao restante da lista.
-        novo->prox = anterior->prox;
+        // Localiza o elemento que ficara depois do novo.
+        proximo = anterior->prox;
+
+        // Liga o novo elemento aos elementos vizinhos.
+        novo->ant = anterior;
+        novo->prox = proximo;
         anterior->prox = novo;
+        proximo->ant = novo;
 
         // Atualiza a quantidade de elementos.
         L->qtd++;

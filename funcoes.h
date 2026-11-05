@@ -40,6 +40,7 @@ typedef struct TipoItem_conta
 {
     reg_contas conteudo;
     TipoApontador_conta prox;
+    TipoApontador_conta ant;
 }TipoItem_conta;
 
 // Define a estrutura que controla a lista de contas, inicio, fim e a quantidade de nós
@@ -70,7 +71,6 @@ typedef struct TipoItem_movim
 {
     reg_movimentacao conteudo;
     TipoApontador_movim prox;
-    TipoApontador_movim ant;
 } TipoItem_movim;
 
 typedef struct
@@ -120,7 +120,7 @@ void tela_Movimentacao(void);
 
 void Inicia_lista_movi(Lista_Movim *L);
 
-TipoItem_movim *cadastrar_movimentacao(Lista_Movim *L, Lista_Conta *L2);
+TipoItem_movim *cadastrar_movimentacao(Lista_Movim *LM, Lista_Conta *L2, char *tipo);
 
 void Transferencia_Contas(Lista_Conta *L);
 

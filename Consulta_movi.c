@@ -1,91 +1,80 @@
+
 /* ----------------------------------------------------------------------+
 |   Autor : Jean Rodrigues de Souza                                      |
-|   Data: 03/11/2026                                                     |
+|   Data: 27/10/2026                                                     |
 |   RA: 437262-2026 - JOAO                                               |
 |   RA: 441378-2026 - JEAN                                               |
 |   CODIGO PRINCIPAL - SISTEMA DE GERENCIAMENTO DE CONTAS E MOVIMENTACAO |
-|   FUNCAO PRINCIPAL DESTA PAGINA - Consulta movimentacoes por conta.    |
+|   FUNCAO PRINCIPAL DESTA PAGINA - Consulta movimentacoes de uma conta  |
 +-----------------------------------------------------------------------*/
 
 #include "funcoes.h"
 
 void Consulta_Movi(Lista_Movim *LM, Lista_Conta *L)
 {
-    TipoItem_movim *p;
-    int codigo, i = 0;
+    TipoItem_movim *aux;
+    TipoItem_conta *p;
+    int codigo;
+    int encontrou = 0;
 
     system("cls");
     tela();
 
-    gotoxy(25, 3);
+    gotoxy(20, 4);
     printf("CONSULTA DE MOVIMENTACOES");
 
-    gotoxy(4, 6);
+    gotoxy(7, 6);
     printf("Digite o codigo da conta: ");
     scanf("%d", &codigo);
 
-    if (busca_Codigo_Conta(L, codigo) == NULL)
+    p = busca_Codigo_Conta(L, codigo);
+
+    if (p == NULL)
     {
-        gotoxy(4, 20);
+        gotoxy(7, 23);
         printf("Conta nao encontrada!");
         getch();
         return;
     }
 
     gotoxy(2, 8);
-    printf("SEQ");
+    printf("Sequencial     Data       Tipo       Favorecido       Valor       Saldo Atual");
 
-    gotoxy(8, 8);
-    printf("CONTA");
+    gotoxy(2, 9);
+    printf("-------------------------------------------------------------------------------");
 
-    gotoxy(17, 8);
-    printf("DATA");
+    aux = LM->inicio;
 
-    gotoxy(27, 8);
-    printf("TIPO");
-
-    gotoxy(37, 8);
-    printf("FAVORECIDO");
-
-    gotoxy(53, 8);
-    printf("VALOR");
-
-    gotoxy(66, 8);
-    printf("SALDO");
-
-    for (p = LM->inicio; p != NULL; p = p->prox)
+    while (aux != NULL)
     {
-        if (p->conteudo.codigo_conta == codigo)
+        if (aux->conteudo.codigo_conta == codigo)
         {
-            gotoxy(2, 10 + i);
-            printf("%d", p->conteudo.sequencial);
+            gotoxy(2, 10);
+            printf("%d", aux->conteudo.sequencial);
+            gotoxy(17, 10);
+            printf("%s", aux->conteudo.data_mov);
+            gotoxy(28, 10);
+            printf("%s", aux->conteudo.tp_mov);
+            gotoxy(39, 10);
+            printf("%s", aux->conteudo.ds_favorecido);
+            gotoxy(57, 10);
+            printf("%.2f", aux->conteudo.vl_movimento);
+            gotoxy(70, 10);
+            printf("%.2f", aux->conteudo.vl_saldo);
 
-            gotoxy(8, 10 + i);
-            printf("%d", p->conteudo.codigo_conta);
+            gotoxy(2, 11);
+            printf("-------------------------------------------------------------------------------");
 
-            gotoxy(17, 10 + i);
-            printf("%s", p->conteudo.data_mov);
-
-            gotoxy(27, 10 + i);
-            printf("%s", p->conteudo.tp_mov);
-
-            gotoxy(37, 10 + i);
-            printf("%s", p->conteudo.ds_favorecido);
-
-            gotoxy(53, 10 + i);
-            printf("R$ %.2f", p->conteudo.vl_movimento);
-
-            gotoxy(66, 10 + i);
-            printf("R$ %.2f", p->conteudo.vl_saldo);
-
-            i++;
+            encontrou = 1;
         }
+
+        aux = aux->prox;
     }
 
-    if (i == 0)
+    if (encontrou == 0)
     {
-        gotoxy(4, 10);
-        printf("Nenhuma movimentacao encontrada!");
+        gotoxy(7, 10);
+        printf("Essa conta nao possui movimentacoes.");
     }
 
     getch();
