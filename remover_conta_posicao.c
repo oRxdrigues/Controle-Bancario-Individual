@@ -67,29 +67,23 @@ void remover_conta_posicao(Lista_Conta *L)
         // Caso seja a ultima posicao da lista
         if (p == L->fim && p != L->inicio)
         {
-            ant = L->inicio;
-            while (ant->prox != L->fim)
-            {
-                ant = ant->prox;
-            }
-            L->fim = ant;
-            ant->prox = NULL;
+          p = L->fim;
+          L->fim = p->ant;
+          L->fim->prox = NULL;
         }
         // Caso seja a primeira posicao da lista
         else if (p == L->inicio && p != L->fim)
         {
-            p = L->inicio;
+            
+            p = L->inico;
             L->inicio = p->prox;
+            L->inicio->ant = NULL;
         }
         // Remove dentro da posicao
         else
         {
-            ant = L->inicio;
-            while (ant->prox != p)
-            {
-                ant = ant->prox;
-            }
-            ant->prox = p->prox;
+            p->ant->prox = p->prox;
+            p->prox->ant = p->ant;
         }
         gotoxy(10, 17);
         printf("Deseja remover conta? 1-Sim / 2-Nao: ");

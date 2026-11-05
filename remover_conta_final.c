@@ -14,7 +14,6 @@ void remover_conta_final(Lista_Conta *L)
 {
     int final;
     int resp;
-    TipoItem_conta *ant;
 
     TipoItem_conta *p;
 
@@ -57,14 +56,9 @@ void remover_conta_final(Lista_Conta *L)
     }
     else
     { // caso haja mais de um no na lista
-        ant = L->inicio;
-        while (ant->prox != L->fim)
-        {
-            ant = ant->prox;
-        }
-        p = L->fim;
-        L->fim = ant;
-        ant->prox = NULL;
+       p = L->ultimo;
+       p->ant = L->ultimo;
+       L->ultimo->prox = NULL; 
     }
     gotoxy(10, 17);
     printf("Deseja remover conta? 1-Sim / 2-Nao: ");

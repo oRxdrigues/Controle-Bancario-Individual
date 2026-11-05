@@ -25,8 +25,6 @@ void remover_conta_inicio(Lista_Conta *L)
     return;
   }
 
-  p = L->inicio;
-
   system("cls");
   tela();
   gotoxy(20, 5);
@@ -61,6 +59,7 @@ void remover_conta_inicio(Lista_Conta *L)
   {
     p = L->inicio;
     L->inicio = p->prox;
+    L->incio->ant = NULL;
   }
   gotoxy(10, 17);
   printf("Deseja remover conta? 1-Sim / 2-Nao: ");
