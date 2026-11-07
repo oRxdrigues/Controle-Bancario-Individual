@@ -120,6 +120,10 @@ void tela_Movimentacao(void);
 
 void Inicia_lista_movi(Lista_Movim *L);
 
+int ler_Mov_Iniciar(Lista_Movim *LM);
+
+int salva_Lista_Movimentacao(Lista_Movim *LM);
+
 TipoItem_movim *cadastrar_movimentacao(Lista_Movim *LM, Lista_Conta *L2, char *tipo);
 
 void Transferencia_Contas(Lista_Conta *L);

@@ -51,7 +51,16 @@ void MenuPrincipal(void)
             break;
 
         case 3:
-            /* Chamar a funcao de salvar */
+
+        if(salva_Lista_Movimentacao(&LM) == 0){
+            gotoxy(4, 20);
+            printf("Lista salva com sucesso!");
+            getch();
+        }else{
+            gotoxy(4, 20);
+            printf("Erro ao salvar lista!");
+            getch();
+        }
             break;
 
         case 0:
@@ -64,5 +73,5 @@ void MenuPrincipal(void)
             break;
         }
 
-    } while (opcao != 0);
+    } while (opcao == 3);
 }

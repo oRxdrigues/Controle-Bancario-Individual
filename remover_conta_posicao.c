@@ -75,7 +75,7 @@ void remover_conta_posicao(Lista_Conta *L)
         else if (p == L->inicio && p != L->fim)
         {
             
-            p = L->inico;
+            p = L->inicio;
             L->inicio = p->prox;
             L->inicio->ant = NULL;
         }
