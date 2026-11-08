@@ -1,4 +1,3 @@
-
 /* ----------------------------------------------------------------------+
 |   Autor : Jean Rodrigues de Souza                                      |
 |   Data: 27/10/2026                                                     |
@@ -17,19 +16,20 @@ void inserir_Final_Conta(Lista_Conta *L, TipoItem_conta *novo)
     if (L == NULL || novo == NULL)
         return;
 
-    // O novo elemento sera o ultimo da lista.
+    // Garante que o proximo do novo no sera NULL (pois vai para o fim)
     novo->prox = NULL;
-    novo->ant = L->fim;
 
-    // Verifica se a lista esta vazia.
+    // Se a lista estiver vazia
     if (L->inicio == NULL)
     {
+        novo->ant = NULL;
         L->inicio = novo;
         L->fim = novo;
     }
     else
     {
-        // Liga o ultimo elemento atual ao novo elemento.
+        // Se a lista ja tem elementos
+        novo->ant = L->fim;
         L->fim->prox = novo;
         L->fim = novo;
     }

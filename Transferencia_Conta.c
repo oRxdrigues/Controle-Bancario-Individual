@@ -1,6 +1,6 @@
 /* ----------------------------------------------------------------------+
 |   Autor : Jean Rodrigues de Souza                                      |
-|   Data: 03/11/2026                                                     |
+|   Data: 08/11/2026                                                     |
 |   RA: 437262-2026 - JOAO                                               |
 |   RA: 441378-2026 - JEAN                                               |
 |   CODIGO PRINCIPAL - SISTEMA DE GERENCIAMENTO DE CONTAS E MOVIMENTACAO |
@@ -14,7 +14,13 @@ void Transferencia_Contas(Lista_Conta *L)
     TipoItem_conta *origem;
     TipoItem_conta *destino;
     int codigo_origem, codigo_destino;
+    int tipo;
     double valor;
+
+    if (L == NULL)
+    {
+        return;
+    }
 
     system("cls");
     tela();
@@ -36,8 +42,8 @@ void Transferencia_Contas(Lista_Conta *L)
 
     if (origem == NULL)
     {
-        gotoxy(4, 20);
-        printf("Conta de origem nao encontrada!");
+        gotoxy(4, 23);
+        printf("Conta de origem nao encontrada!              ");
         getch();
         return;
     }
@@ -71,16 +77,16 @@ void Transferencia_Contas(Lista_Conta *L)
 
     if (destino == NULL)
     {
-        gotoxy(4, 20);
-        printf("Conta de destino nao encontrada!");
+        gotoxy(4, 23);
+        printf(" Conta de destino nao encontrada!               ");
         getch();
         return;
     }
 
     if (origem == destino)
     {
-        gotoxy(4, 20);
-        printf("As contas devem ser diferentes!");
+        gotoxy(4, 23);
+        printf(" As contas devem ser diferentes!         ");
         getch();
         return;
     }
@@ -106,31 +112,68 @@ void Transferencia_Contas(Lista_Conta *L)
     gotoxy(43, 14);
     printf("Status: %s", destino->conteudo.status);
 
+    gotoxy(4, 16);
+    printf("Tipo de movimentacao:");
     gotoxy(4, 17);
-    printf("Valor da transferencia: R$ ");
-    scanf("%lf", &valor);
+    printf("1 - Debito");
+    gotoxy(25, 17);
+    printf("2 - Credito");
+    gotoxy(4, 18);
+    printf("Escolha: ");
+    scanf("%d", &tipo);
 
-    if (valor <= 0 || valor > origem->conteudo.vl_saldo)
+    if (tipo != 1 && tipo != 2)
     {
         gotoxy(4, 20);
-        printf("Valor invalido ou saldo insuficiente!");
+        printf("Opcao invalida!");
         getch();
         return;
     }
 
-    origem->conteudo.vl_saldo -= valor;
-    destino->conteudo.vl_saldo += valor;
-
     gotoxy(4, 19);
-    printf("Transferencia realizada com sucesso!");
+    printf("Valor: R$ ");
+    scanf("%lf", &valor);
 
-    gotoxy(4, 21);
-    printf("Novo saldo origem: R$ %.2f",
-           origem->conteudo.vl_saldo);
+    if (valor <= 0)
+    {
+        gotoxy(4, 23);
+        printf("O valor deve ser maior que zero!");
+        getch();
+        return;
+    }
 
-    gotoxy(43, 21);
-    printf("Novo saldo destino: R$ %.2f",
-           destino->conteudo.vl_saldo);
+    if (tipo == 1)
+    {
+        if (valor > origem->conteudo.vl_saldo)
+        {
+            gotoxy(4, 21 );
+            printf("Saldo insuficiente para o debito!       ");
+            getch();
+            return;
+        }
+
+        origem->conteudo.vl_saldo -= valor;
+        destino->conteudo.vl_saldo += valor;
+    }
+    else
+    {
+        origem->conteudo.vl_saldo += valor;
+        destino->conteudo.vl_saldo -= valor;
+
+        if (destino->conteudo.vl_saldo < 0)
+        {
+            origem->conteudo.vl_saldo -= valor;
+            destino->conteudo.vl_saldo += valor;
+
+            gotoxy(4, 23);
+            printf("Saldo insuficiente na conta de destino!      ");
+            getch();
+            return;
+        }
+    }
+
+    gotoxy(4, 23);
+    printf("Movimentacao realizada com sucesso!                  ");
 
     getch();
 }

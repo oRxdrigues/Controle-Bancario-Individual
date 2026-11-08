@@ -28,7 +28,7 @@ void ConsultarConta(Lista_Conta *L)
     printf("Digite a posicao da conta: ");
     scanf("%d", &pos);
 
-    conta = obter_Posicao_Conta(L, pos);
+    conta = busca_Codigo_Conta(L, pos);
 
     if (conta == NULL)
     {

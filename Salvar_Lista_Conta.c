@@ -1,4 +1,3 @@
-
 /* ----------------------------------------------------------------------+
 |   Autor : Jean Rodrigues de Souza                                      |
 |   Data: 02/11/2026                                                     |
@@ -15,37 +14,39 @@ int salvar_Lista_Conta(Lista_Conta *L)
 {
     FILE *arquivo;
     TipoItem_conta *p;
-    int quantidade = 0;
+
+    // Se a lista for invalida, cancela antes de sobrescrever o arquivo
+    if (L == NULL)
+    {
+        return 0;
+    }
 
     // Abre o arquivo para gravacao binaria.
     arquivo = fopen("contas.dat", "wb");
 
     if (arquivo == NULL)
     {
+        gotoxy(7, 23);
         printf("Erro ao abrir o arquivo para salvar as contas!");
         getch();
         return 0;
     }
 
-    // Se a lista for invalida, salva um arquivo vazio.
-    if (L != NULL)
+    p = L->inicio;
+
+    // Percorre a lista e grava somente os dados de cada conta.
+    while (p != NULL)
     {
-        p = L->inicio;
-
-        // Percorre a lista e grava somente os dados de cada conta.
-        while (p != NULL)
+        if (fwrite(&p->conteudo, sizeof(reg_contas), 1, arquivo) != 1)
         {
-            if (fwrite(&p->conteudo, sizeof(reg_contas), 1, arquivo) != 1)
-            {
-                fclose(arquivo);
-                printf("Erro ao salvar uma conta!");
-                getch();
-                return 0;
-            }
-
-            quantidade++;
-            p = p->prox;
+            fclose(arquivo);
+            gotoxy(7, 23);
+            printf("Erro ao salvar uma conta!                     ");
+            getch();
+            return 0;
         }
+
+        p = p->prox;
     }
 
     fclose(arquivo);

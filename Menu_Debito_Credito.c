@@ -1,20 +1,21 @@
 /* ----------------------------------------------------------------------+
 | Autor: Jean Rodrigues de Souza                                         |
-| Data atualizada: 05/11/2026                                            |
+| Data atualizada: 08/11/2026                                            |
 | RA 437262-2026 - JOAO                                                  |
 | RA 441378-2026 - JEAN                                                  |
-| CODIGO PRINCIPAL - SISTEMA DE GERENCIAMENTO DE CONTAS E MOVIMENTACAO    |
+| CODIGO PRINCIPAL - SISTEMA DE GERENCIAMENTO DE CONTAS E MOVIMENTACAO   |
 | Funcao: Cadastra uma movimentacao financeira                           |
 +------------------------------------------------------------------------*/
 
 #include "funcoes.h"
 
-TipoItem_movim *cadastrar_movimentacao(Lista_Movim *LM, Lista_Conta *L2, char *tipo)
+TipoItem_movim *Menu_Debito_Credito(Lista_Movim *LM, Lista_Conta *L2)
 {
     TipoItem_movim *novo;
     TipoItem_conta *p;
     int codigo;
     int gravar;
+    int tipo;
 
     novo = malloc(sizeof(TipoItem_movim));
 
@@ -51,10 +52,30 @@ TipoItem_movim *cadastrar_movimentacao(Lista_Movim *LM, Lista_Conta *L2, char *t
     novo->conteudo.codigo_conta = codigo;
 
     gotoxy(31, 9);
-    scanf("%10s", novo->conteudo.data_mov);
+    scanf(" %10[^\n]", novo->conteudo.data_mov);
 
     gotoxy(31, 11);
-    strcpy(novo->conteudo.tp_mov, tipo);
+    printf("1 - Debito / 2 - Credito: ");
+    scanf("%d", &tipo);
+
+    if (tipo == 1)
+    {
+        strcpy(novo->conteudo.tp_mov, "Debito                      ");
+    }
+    else if (tipo == 2)
+    {
+        strcpy(novo->conteudo.tp_mov, "Credito                     ");
+    }
+    else
+    {
+        gotoxy(31, 11);
+        printf("   Opcao invalida!                   ");
+        free(novo);
+        getch();
+        return NULL;
+    }
+
+    gotoxy(31, 11);
     printf("%s", novo->conteudo.tp_mov);
 
     gotoxy(31, 13);
@@ -65,13 +86,14 @@ TipoItem_movim *cadastrar_movimentacao(Lista_Movim *LM, Lista_Conta *L2, char *t
 
     if (novo->conteudo.vl_movimento <= 0)
     {
-        printf("\nValor invalido!");
+        gotoxy(31, 15);
+        printf("     Valor invalido!                   ");
         free(novo);
         getch();
         return NULL;
     }
 
-    if (strcmp(tipo, "Credito") == 0)
+    if (strcmp(novo->conteudo.tp_mov, "Credito                     ") == 0)
     {
         novo->conteudo.vl_saldo =
             p->conteudo.vl_saldo + novo->conteudo.vl_movimento;
@@ -81,7 +103,7 @@ TipoItem_movim *cadastrar_movimentacao(Lista_Movim *LM, Lista_Conta *L2, char *t
         if (p->conteudo.vl_saldo - novo->conteudo.vl_movimento <
             -p->conteudo.vl_limite)
         {
-            printf("\nSaldo e limite insuficientes!");
+            printf("\nSaldo e limite insuficientes!                ");
             free(novo);
             getch();
             return NULL;
@@ -91,18 +113,17 @@ TipoItem_movim *cadastrar_movimentacao(Lista_Movim *LM, Lista_Conta *L2, char *t
             p->conteudo.vl_saldo - novo->conteudo.vl_movimento;
     }
 
-    
     gotoxy(31, 17);
     printf("%.2f", novo->conteudo.vl_saldo);
 
     gotoxy(7, 23);
-    printf("Deseja gravar a movimentacao? 1-Sim / 2-Nao: ");
+    printf("Deseja gravar a movimentacao? 1-Sim / 2-Nao:  ");
     scanf("%d", &gravar);
 
     if (gravar != 1)
     {
         gotoxy(7, 23);
-        printf("Movimentacao cancelada!                         ");
+        printf("Movimentacao cancelada!                     ");
         free(novo);
         getch();
         return NULL;
@@ -123,7 +144,7 @@ TipoItem_movim *cadastrar_movimentacao(Lista_Movim *LM, Lista_Conta *L2, char *t
     LM->qtd++;
 
     gotoxy(7, 23);
-    printf("Movimentacao cadastrada!                        ");
+    printf("Movimentacao cadastrada!                         ");
     getch();
 
     return novo;

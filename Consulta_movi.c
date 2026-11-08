@@ -45,26 +45,26 @@ void Consulta_Movi(Lista_Movim *LM, Lista_Conta *L)
 
     aux = LM->inicio;
 
+   aux = LM->inicio;
+    int y = 10; // Linha inicial para impressao
+
     while (aux != NULL)
     {
         if (aux->conteudo.codigo_conta == codigo)
         {
-            gotoxy(2, 10);
-            printf("%d", aux->conteudo.sequencial);
-            gotoxy(17, 10);
-            printf("%s", aux->conteudo.data_mov);
-            gotoxy(28, 10);
-            printf("%s", aux->conteudo.tp_mov);
-            gotoxy(39, 10);
-            printf("%s", aux->conteudo.ds_favorecido);
-            gotoxy(57, 10);
-            printf("%.2f", aux->conteudo.vl_movimento);
-            gotoxy(70, 10);
-            printf("%.2f", aux->conteudo.vl_saldo);
+            gotoxy(2, y);   printf("%d", aux->conteudo.sequencial);
+            gotoxy(17, y);  printf("%s", aux->conteudo.data_mov);
+            gotoxy(28, y);  printf("%s", aux->conteudo.tp_mov);
+            gotoxy(39, y);  printf("%s", aux->conteudo.ds_favorecido);
+            gotoxy(57, y);  printf("%.2f", aux->conteudo.vl_movimento);
+            gotoxy(70, y);  printf("%.2f", aux->conteudo.vl_saldo);
 
-            gotoxy(2, 11);
+            y++; // Avança para a proxima linha da tela
+
+            gotoxy(2, y);
             printf("-------------------------------------------------------------------------------");
-
+            
+            y++; // Avança mais uma linha para o proximo item
             encontrou = 1;
         }
 

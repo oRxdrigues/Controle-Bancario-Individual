@@ -14,9 +14,15 @@ void MenuPrincipal(void)
     int opcao;
     Lista_Conta L;
     Lista_Movim LM;
-
+    
     iniciaContas(&L);
     Inicia_lista_movi(&LM);
+
+     ler_Lista_Conta(&L);
+     ler_Mov_Iniciar(&LM);
+
+    int resultadoContas;
+    int resultadoMovimentacoes;
 
     do
     {
@@ -40,6 +46,7 @@ void MenuPrincipal(void)
 
         scanf("%d", &opcao);
 
+
         switch (opcao)
         {
         case 1:
@@ -51,16 +58,22 @@ void MenuPrincipal(void)
             break;
 
         case 3:
+            resultadoContas = salvar_Lista_Conta(&L);
+            resultadoMovimentacoes = salva_Lista_Movimentacao(&LM);
 
-        if(salva_Lista_Movimentacao(&LM) == 0){
             gotoxy(4, 20);
-            printf("Lista salva com sucesso!");
+
+            if (resultadoContas == 1 &&
+                resultadoMovimentacoes == 1)
+            {
+                printf("Contas e movimentacoes salvas com sucesso!");
+            }
+            else
+            {
+                printf("Erro ao salvar contas ou movimentacoes!");
+            }
+
             getch();
-        }else{
-            gotoxy(4, 20);
-            printf("Erro ao salvar lista!");
-            getch();
-        }
             break;
 
         case 0:
@@ -73,5 +86,5 @@ void MenuPrincipal(void)
             break;
         }
 
-    } while (opcao == 3);
+    } while (opcao != 3);
 }

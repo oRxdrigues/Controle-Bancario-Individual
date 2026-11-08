@@ -26,12 +26,12 @@ typedef struct
 {
 int codigo_conta;
 char banco[50];
-char agencia[10]; //Codigo da agencia bancaria
+char agencia[15]; //Codigo da agencia bancaria
 char numero_conta[20]; 
 char tipo_conta[20]; //Corrente, poupanca ou credito
 double vl_saldo; 
 double vl_limite; //Pode ter limite negativo
-char status[10]; //ativo ou nativo
+char status[15]; //ativo ou nativo
 } reg_contas;
 
 typedef struct TipoItem_conta *TipoApontador_conta;
@@ -122,15 +122,17 @@ void Inicia_lista_movi(Lista_Movim *L);
 
 int ler_Mov_Iniciar(Lista_Movim *LM);
 
+int salvar_Lista_Conta(Lista_Conta *L);
+
 int salva_Lista_Movimentacao(Lista_Movim *LM);
 
-TipoItem_movim *cadastrar_movimentacao(Lista_Movim *LM, Lista_Conta *L2, char *tipo);
+TipoItem_movim *Menu_Debito_Credito(Lista_Movim *LM, Lista_Conta *L2);
 
 void Transferencia_Contas(Lista_Conta *L);
 
 void Consulta_Movi(Lista_Movim *LM, Lista_Conta *L);
 
-
+int ler_Lista_Conta(Lista_Conta *L);
 
 
 #endif
