@@ -1,72 +1,56 @@
-<div align="center">
+# Controle Bancário
 
-**---**
+Projeto em linguagem C para gerenciamento de contas bancárias e movimentações.
 
-### ALTERAÇÕES FERRI 26/10/2026
+## Funcionalidades presentes no código
+- Cadastro, consulta, alteração e remoção de contas.
+- Inserção e consulta de movimentações.
+- Menus para movimentações de débito e crédito.
+- Transferência entre contas.
+- Persistência de dados em arquivos (`contas.dat` e `movimentacoes.dat`).
 
-**---**
+> A lista acima descreve funções identificadas pelos nomes dos arquivos do projeto. Confirme cada comportamento executando os testes antes da entrega.
 
-| ADIÇÕES DENTRO DO CÓDIGO |
-|:---:|
-| Adição do arquivo `funcoes.h`, tendo como funcionalidade guardar as estruturas das listas |
-| Criação da estrutura `reg_contas`, responsável por representar os dados das contas bancárias em uma lista duplamente encadeada |
-| Criação da estrutura `reg_movimentacao`, responsável por representar os dados das movimentações bancárias em uma lista simplesmente encadeada |
-| Adição da função `gotoxy()`, tendo como funcionalidade determinar a posição de elementos na tela |
+## Requisitos
+- Windows.
+- GCC instalado e disponível no `PATH` (por exemplo, via MinGW-w64).
+- Terminal CMD.
 
-**---**
+O projeto utiliza cabeçalhos específicos do Windows, como `windows.h` e `conio.h`, portanto estes comandos são destinados ao Windows.
 
-### ALTERAÇÕES FERRI 27/10/2026
+## Compilar e executar
 
-**---**
+Abra o CMD e execute:
 
-| ADIÇÕES DENTRO DO CÓDIGO |
-|:---:|
-| Adição das funções de remoção de contas da lista, no início, no fim e por posição |
-| Correção de algumas funções do sistema, como `tela.c` |
+```cmd
+cd /d C:\\Users\\Cliente\\Desktop\\Controle-Bancario
+if not exist output mkdir output
+gcc -Wall -Wextra -g *.c -o output\\bancario.exe
+output\\bancario.exe
+```
 
-**---**
+Se a pasta estiver em outro local, substitua o caminho do primeiro comando pelo caminho real do projeto.
 
-### ALTERAÇÕES JEAN 27/10/2026
+Se o compilador mostrar avisos ou erros, guarde a mensagem completa e corrija antes da entrega. A existência de um executável antigo na pasta `output` não comprova que o código atual compilou.
 
-**---**
+## Arquivos de dados
+O programa contém `contas.dat` e `movimentacoes.dat`. Faça uma cópia desses arquivos antes de testar operações que alteram ou removem dados.
 
-| ADIÇÕES DENTRO DO CÓDIGO |
-|:---:|
-| Organização dos arquivos do projeto para compilação utilizando o GCC |
-| Ajustes na execução do programa pelo terminal do VS Code |
+## Documentação
+- [Casos de teste](docs/TESTES.md)
+- [Roteiro de apresentação individual](docs/ROTEIRO_APRESENTACAO.md)
 
-**---**
+## Controle de versão
+Para enviar alterações ao repositório individual já configurado como remoto `individual`:
 
-### ALTERAÇÕES JEAN 28/10/2026
+```cmd
+git status
+git add README.md docs
+git commit -m "Documenta projeto e casos de teste"
+git push individual main
+```
 
-**---**
+Se o Git informar que não há alterações para registrar, confira `git status`. Não crie commits artificiais apenas para aumentar o histórico.
 
-| ADIÇÕES DENTRO DO CÓDIGO |
-|:---:|
-| Desenvolvimento das funções de inserção de contas no início e no fim da lista |
-| Adição da função de obtenção de conta por posição |
-| Adição da função de busca de conta pelo código |
-| Organização dos campos da estrutura de contas bancárias |
-| Ajustes nas declarações das funções no arquivo `funcoes.h` |
-
-**---**
-
-### ALTERAÇÕES JEAN 29/10/2026
-
-**---**
-
-| ADIÇÕES DENTRO DO CÓDIGO |
-|:---:|
-| Desenvolvimento do menu principal do sistema bancário |
-| Desenvolvimento do menu de gerenciamento de contas |
-| Criação da função `cadastrarConta()` para receber os dados de uma nova conta bancária |
-| Organização dos campos de cadastro na tela utilizando a função `gotoxy()` |
-| Adição da confirmação para gravar ou cancelar o cadastro da conta |
-| Integração da função de cadastro com `inserir_Inicio_Conta()` |
-| Ajustes nas chamadas das funções entre o menu principal e o menu de contas |
-| Correção de erros de compilação e integração entre os arquivos do projeto |
-| Início dos ajustes para consulta sequencial das contas utilizando a tecla ENTER |
-
-**---**
-
-</div>
+## Situação dos testes
+Os casos em `docs/TESTES.md` são uma lista de verificação. Marque cada resultado somente depois de executar o teste na versão atual do programa.
